@@ -1,0 +1,41 @@
+name: "Setup editorconfig-checker"
+description: "Downloads the editorconfig-checker binary by version number and adds it to your PATH"
+author: "Kasper Hesthaven"
+branding:
+  icon: play
+  color: green
+inputs:
+  version:
+    description: "Version to download, e.g., 2.1.0 or 2.0.4. (default: latest)"
+    required: false
+  command-name:
+    description: "Set editorconfig-checker command name, e.g., 'ec'. (default: editorconfig-checker)"
+    required: false
+    default: "editorconfig-checker"
+runs:
+  using: "composite"
+  steps:
+    - name: Assign latest version if version not provided
+      run: |
+        if [ -z ${{ inputs.version }} ]; then
+            echo "::set-env name=VERSION::$(curl --silent "https://api.github.com/repos/editorconfig-checker/editorconfig-checker/releases/latest" | jq -r .tag_name)"
+        else
+            echo "::set-env name=VERSION::${{ inputs.version }}"
+        fi
+      shell: bash
+
+    - name: Assign lowercase runner env
+      run: |
+        echo "::set-env name=OS::$(uname -s | tr '[:upper:]' '[:lower:]')"
+        echo "::set-env name=ARCH::amd64"
+      shell: bash
+
+    - name: Download & add to path as editorconfig-checker
+      run: |
+        mkdir /home/runner/editorconfig-checker & cd "$_"
+        echo "Downloading editorconfig-checker version $VERSION for $OS-$ARCH from https://github.com/editorconfig-checker/editorconfig-checker/releases/download/$VERSION/ec-$OS-$ARCH.tar.gz"
+        curl -L https://github.com/editorconfig-checker/editorconfig-checker/releases/download/$VERSION/ec-$OS-$ARCH.tar.gz | tar zx --strip-components 1
+        mv ec-$OS-$ARCH ${{ inputs.command-name }}
+        echo "Adding editorconfig-checker to path as ${{ inputs.command-name }}"
+        echo "::add-path::$(pwd)"
+      shell: bash
