@@ -24,18 +24,28 @@ runs:
         fi
       shell: bash
 
-    - name: Assign lowercase runner env
+    - name: Assign runner env
       run: |
-        echo "::set-env name=OS::$(uname -s | tr '[:upper:]' '[:lower:]')"
-        echo "::set-env name=ARCH::amd64"
+        if [ ${{ runner.os }} == "Windows" ]; then
+            echo "::set-env name=OS::windows"
+            echo "::set-env name=EXTENSION::.exe"
+            echo "::set-env name=POSIX_PATH::$(echo "/${{ runner.temp }}\ec" | sed -e 's/\\/\//g' -e 's/://' | tr '[:upper:]' '[:lower:]')"
+            echo "::set-env name=FINAL_PATH::${{ runner.temp }}\ec"
+        else
+            echo "::set-env name=OS::$(uname -s | tr '[:upper:]' '[:lower:]')"
+            echo "::set-env name=POSIX_PATH::${{ runner.temp }}/ec"
+            echo "::set-env name=FINAL_PATH::${{ runner.temp }}/ec"
+        fi
       shell: bash
 
-    - name: Download & add to path as editorconfig-checker
+    - name: Download & add to path
       run: |
-        mkdir /home/runner/editorconfig-checker & cd "$_"
-        echo "Downloading editorconfig-checker version $VERSION for $OS-$ARCH from https://github.com/editorconfig-checker/editorconfig-checker/releases/download/$VERSION/ec-$OS-$ARCH.tar.gz"
-        curl -L https://github.com/editorconfig-checker/editorconfig-checker/releases/download/$VERSION/ec-$OS-$ARCH.tar.gz | tar zx --strip-components 1
-        mv ec-$OS-$ARCH ${{ inputs.command-name }}
-        echo "Adding editorconfig-checker to path as ${{ inputs.command-name }}"
-        echo "::add-path::$(pwd)"
+        echo "Making $POSIX_PATH and changing into it"
+        mkdir -p $POSIX_PATH && cd "$_"
+        echo "Downloading editorconfig-checker version $VERSION for $OS-amd64 from https://github.com/editorconfig-checker/editorconfig-checker/releases/download/$VERSION/ec-$OS-amd64$EXTENSION.tar.gz"
+        curl -L https://github.com/editorconfig-checker/editorconfig-checker/releases/download/$VERSION/ec-$OS-amd64$EXTENSION.tar.gz | tar zx --strip-components 1
+        echo "Renaming ec-$OS-amd64$EXTENSION to ${{ inputs.command-name }}$EXTENSION"
+        mv ec-$OS-amd64$EXTENSION ${{ inputs.command-name }}$EXTENSION
+        echo "Adding $FINAL_PATH to path"
+        echo "::add-path::$FINAL_PATH"
       shell: bash
