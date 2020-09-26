@@ -1,6 +1,16 @@
 # setup-editorconfig-checker
 
-This action downloads [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-checker) by version number and adds it to your path, enabling you to check if your files consider your .editorconfig-rules, regardless of filetype.
+This GitHub action downloads [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-checker) by version and adds it to your path, enabling you to lint your files according to your .editorconfig-rules, across multiple file types.
+
+## Inputs
+
+### `version`
+
+**Optional** The desired version of editorconfig-checker. This will be set to the latest GitHub release version if not set.
+
+### `command-name`
+
+**Optional** The name by which editorconfig-checker should be available. This defaults to 'editorconfig-checker'.
 
 # Usage
 
