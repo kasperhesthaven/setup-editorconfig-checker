@@ -24,7 +24,7 @@ steps:
       uses: actions/checkout@v2
 
     - name: Install editorconfig-checker
-    - uses: kasperhesthaven/editorconfig-checker@v1
+    - uses: kasperhesthaven/setup-editorconfig-checker@v1
       with:
           version: "2.1.0" # Defaults to latest if not set
 
