@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/" # `/` checks in `.github/workflows`
+    schedule:
+      interval: "weekly"
+    labels:
+      - "Type: Maintenance"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    reviewers:
+      - "kasperhesthaven"
