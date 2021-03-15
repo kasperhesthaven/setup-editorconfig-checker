@@ -2,6 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/kasperhesthaven/setup-editorconfig-checker.svg)](https://gitHub.com/kasperhesthaven/setup-editorconfig-checker/releases/)
 [![GitHub license](https://img.shields.io/github/license/kasperhesthaven/setup-editorconfig-checker.svg)](https://github.com/kasperhesthaven/setup-editorconfig-checker/blob/master/LICENSE)
+[![Test](https://github.com/kasperhesthaven/setup-editorconfig-checker/actions/workflows/test.yml/badge.svg)](https://github.com/kasperhesthaven/setup-editorconfig-checker/actions/workflows/test.yml)
 
 This GitHub action downloads [editorconfig-checker](https://github.com/editorconfig-checker/editorconfig-checker) by version and adds it to your path, enabling you to lint your files according to your .editorconfig-rules, across multiple file types.
 
