@@ -4,6 +4,7 @@ author: "Kasper Hesthaven"
 branding:
   icon: play
   color: green
+
 inputs:
   version:
     description: "Version to download, e.g., 2.1.0 or 2.0.4. (default: latest)"
@@ -12,29 +13,30 @@ inputs:
     description: "Set editorconfig-checker command name, e.g., 'ec'. (default: editorconfig-checker)"
     required: false
     default: "editorconfig-checker"
+
 runs:
   using: "composite"
   steps:
     - name: Assign latest version if version not provided
       run: |
         if [ -z ${{ inputs.version }} ]; then
-            echo "::set-env name=VERSION::$(curl --silent "https://api.github.com/repos/editorconfig-checker/editorconfig-checker/releases/latest" | jq -r .tag_name)"
+            echo "VERSION=$(curl -s "https://api.github.com/repos/editorconfig-checker/editorconfig-checker/releases/latest" --header 'authorization: Bearer ${{ github.token }}' | jq -r .tag_name)" >> $GITHUB_ENV
         else
-            echo "::set-env name=VERSION::${{ inputs.version }}"
+            echo "VERSION=${{ inputs.version }}" >> $GITHUB_ENV
         fi
       shell: bash
 
     - name: Assign runner env
       run: |
         if [ ${{ runner.os }} == "Windows" ]; then
-            echo "::set-env name=OS::windows"
-            echo "::set-env name=EXTENSION::.exe"
-            echo "::set-env name=POSIX_PATH::$(echo "/${{ runner.temp }}\ec" | sed -e 's/\\/\//g' -e 's/://' | tr '[:upper:]' '[:lower:]')"
-            echo "::set-env name=FINAL_PATH::${{ runner.temp }}\ec"
+            echo "OS=windows" >> $GITHUB_ENV
+            echo "EXTENSION=.exe" >> $GITHUB_ENV
+            echo "POSIX_PATH=$(echo "/${{ runner.temp }}\ec" | sed -e 's/\\/\//g' -e 's/://' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+            echo "FINAL_PATH=${{ runner.temp }}\ec" >> $GITHUB_ENV
         else
-            echo "::set-env name=OS::$(uname -s | tr '[:upper:]' '[:lower:]')"
-            echo "::set-env name=POSIX_PATH::${{ runner.temp }}/ec"
-            echo "::set-env name=FINAL_PATH::${{ runner.temp }}/ec"
+            echo "OS=$(uname -s | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+            echo "POSIX_PATH=${{ runner.temp }}/ec" >> $GITHUB_ENV
+            echo "FINAL_PATH=${{ runner.temp }}/ec" >> $GITHUB_ENV
         fi
       shell: bash
 
@@ -47,5 +49,5 @@ runs:
         echo "Renaming ec-$OS-amd64$EXTENSION to ${{ inputs.command-name }}$EXTENSION"
         mv ec-$OS-amd64$EXTENSION ${{ inputs.command-name }}$EXTENSION
         echo "Adding $FINAL_PATH to path"
-        echo "::add-path::$FINAL_PATH"
+        echo "$FINAL_PATH" >> $GITHUB_PATH
       shell: bash
