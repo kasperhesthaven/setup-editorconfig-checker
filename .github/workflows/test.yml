@@ -1,0 +1,27 @@
+name: Test
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  test:
+    name: Test action # Ensure action runs on any clean machine
+    runs-on: ${{ matrix.os }}
+    strategy:
+        matrix:
+            os: [macos-latest, windows-latest, ubuntu-latest]
+            include:
+            - os: windows-latest
+              flags: '-disable-end-of-line -disable-insert-final-newline'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.4
+
+      - name: Run action
+        uses: ./
+
+      - name: Test editorconfig-checker
+        run: editorconfig-checker ${{ matrix.flags }}
