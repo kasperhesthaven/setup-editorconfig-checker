@@ -1,0 +1,183 @@
+[
+  {
+    "name": "Weight: 0",
+    "color": "6f42c1",
+    "description": "Issue weighed at 0 story points"
+  },
+  {
+    "name": "Weight: 1",
+    "color": "6f42c1",
+    "description": "Issue weighed at 1 story points"
+  },
+  {
+    "name": "Weight: 2",
+    "color": "6f42c1",
+    "description": "Issue weighed at 2 story points"
+  },
+  {
+    "name": "Weight: 3",
+    "color": "6f42c1",
+    "description": "Issue weighed at 3 story points"
+  },
+  {
+    "name": "Weight: 5",
+    "color": "6f42c1",
+    "description": "Issue weighed at 5 story points"
+  },
+  {
+    "name": "Weight: 8",
+    "color": "6f42c1",
+    "description": "Issue weighed at 8 story points"
+  },
+  {
+    "name": "Weight: 13",
+    "color": "6f42c1",
+    "description": "Issue weighed at 13 story points"
+  },
+  {
+    "name": "Weight: 20",
+    "color": "6f42c1",
+    "description": "Issue weighed at 20 story points"
+  },
+  {
+    "name": "Weight: 40",
+    "color": "6f42c1",
+    "description": "Issue weighed at 40 story points"
+  },
+  {
+    "name": "Priority: Critical",
+    "color": "d73a49",
+    "description": "Highest priority; needs immediate attention"
+  },
+  { "name": "Priority: High", "color": "ff8d40" },
+  { "name": "Priority: Medium", "color": "ffd33d" },
+  {
+    "name": "Priority: Low",
+    "color": "0e8a16",
+    "description": "Lowest priority; other issues take precedence"
+  },
+  {
+    "name": "Status: Abandoned",
+    "color": "6a737d",
+    "description": "Left by owner(s) w/o support or future intent"
+  },
+  {
+    "name": "Status: Stale",
+    "color": "6a737d",
+    "description": "Closing due to period of no activity"
+  },
+  {
+    "name": "Status: Discussion Needed",
+    "color": "ffd33d",
+    "description": "Requires further planning and/or decisions"
+  },
+  {
+    "name": "Status: Accepted",
+    "color": "0e8a16",
+    "description": "Approved & ready to be planned & resolved"
+  },
+  {
+    "name": "Status: Available",
+    "color": "0e8a16",
+    "description": "Ready for any available assignee"
+  },
+  {
+    "name": "Status: Blocked",
+    "color": "24292e",
+    "description": "Currently impeded by other issue"
+  },
+  {
+    "name": "Status: Completed",
+    "color": "0e8a16",
+    "description": "Completed and can be closed"
+  },
+  {
+    "name": "Status: In Progress",
+    "color": "6a737d",
+    "description": "Currently being actively resolved"
+  },
+  {
+    "name": "Status: On Hold",
+    "color": "ffd33d",
+    "description": "Awaits and depends on outcome of an event"
+  },
+  {
+    "name": "Status: Pending",
+    "color": "fff5b1",
+    "description": "Awaits occurrence of an event"
+  },
+  {
+    "name": "Status: Review Needed",
+    "color": "ffd33d",
+    "description": "Awaits assigned reviewer(s)"
+  },
+  {
+    "name": "Status: Revision Needed",
+    "color": "ffd33d",
+    "description": "Awaits revision(s) following review"
+  },
+
+  {
+    "name": "Type: Bug",
+    "color": "d73a49",
+    "description": "Unexpected or unwanted flaw or behavior"
+  },
+  {
+    "name": "Type: Maintenance",
+    "color": "fff5b1",
+    "description": "Required to preserve state & continuance"
+  },
+  {
+    "name": "Type: Enhancement",
+    "color": "0366d6",
+    "description": "Improvement of feature or performance"
+  },
+  {
+    "name": "Type: Feature",
+    "color": "0366d6",
+    "description": "A new distinctive addition"
+  },
+  {
+    "name": "Type: Documentation",
+    "color": "e6daff",
+    "description": "Addition or edit of docs, inline or external"
+  },
+  {
+    "name": "Type: Question",
+    "color": "f6f8fa",
+    "description": "Request for discussion or information"
+  },
+  {
+    "name": "Type: Discussion",
+    "color": "f6f8fa",
+    "description": "Examine by argument, to explore solutions"
+  },
+  { "name": "Type: Test", "color": "dbedff" },
+  { "name": "Type: Duplicate", "color": "6a737d" },
+
+  { "name": "Platform: Mobile", "color": "dcffe4" },
+  { "name": "Platform: Tablet", "color": "dcffe4" },
+  { "name": "Platform: Desktop", "color": "dcffe4" },
+  { "name": "Platform: Windows", "color": "dcffe4" },
+  { "name": "Platform: MacOS", "color": "dcffe4" },
+  { "name": "Platform: Linux", "color": "dcffe4" },
+  { "name": "Platform: iOS", "color": "dcffe4" },
+  { "name": "Platform: Android", "color": "dcffe4" },
+
+  { "name": "Environment: Production", "color": "dcffe4" },
+  { "name": "Environment: Test", "color": "dcffe4" },
+  { "name": "Environment: QA", "color": "dcffe4" },
+  { "name": "Environment: Local", "color": "dcffe4" },
+
+  { "name": "Browser: Chrome", "color": "dcffe4" },
+  { "name": "Browser: Edge", "color": "dcffe4" },
+  { "name": "Browser: Explorer", "color": "dcffe4" },
+  { "name": "Browser: Firefox", "color": "dcffe4" },
+  { "name": "Browser: Safari", "color": "dcffe4" },
+
+  { "name": "Blocked: Development", "color": "24292e" },
+  { "name": "Blocked: Test", "color": "24292e" },
+  { "name": "Blocked: Design", "color": "24292e" },
+  { "name": "Blocked: Copy", "color": "24292e" },
+  { "name": "Blocked: Permissions", "color": "24292e" }
+]
